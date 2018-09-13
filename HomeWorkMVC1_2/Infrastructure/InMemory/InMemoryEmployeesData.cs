@@ -36,7 +36,7 @@ namespace HomeWorkMVC1_2.Infrastructure.InMemory
 
         public void Commit()
         {
-            // ничего не делаем
+            
         }
 
         public void AddNew(EmployeeView model)
