@@ -2,12 +2,17 @@
     ViewBag.Title = "Home";
 }
 
-@section top{
+@await Html.PartialAsync("Partial/_Slider")
 
-    @await Html.PartialAsync("Partial/_Slider")
-
-}
-
-@await Html.PartialAsync("Partial/_Features")
-@await Html.PartialAsync("Partial/_CategoryTab")
-@await Html.PartialAsync("Partial/_Recommended")
+<section>
+    <div class="row">
+        <div class="col-sm-3">
+            @await Html.PartialAsync("Partial/_LeftSideBar")
+        </div>
+        <div class="col-sm-9 padding-right">
+            @await Html.PartialAsync("Partial/_Features")
+            @await Html.PartialAsync("Partial/_CategoryTab")
+            @await Html.PartialAsync("Partial/_Recommended")
+        </div>
+    </div>
+</section>

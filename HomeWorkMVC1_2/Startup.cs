@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HomeWorkMVC1_2.Infrastructure.InMemory;
+using HomeWorkMVC1_2.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +34,8 @@ namespace HomeWorkMVC1_2
         {
             //Добавляем сервисы, необходимые для mvc
             services.AddMvc();
+
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +55,10 @@ namespace HomeWorkMVC1_2
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                //routes.MapRoute(
+                //    name: "Employee",
+                //    template: "{controller=Employee}/{action=Index}/{id?}");
             });
         }
     }
