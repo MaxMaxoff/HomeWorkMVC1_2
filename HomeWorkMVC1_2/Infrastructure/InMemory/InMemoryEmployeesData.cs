@@ -24,6 +24,10 @@ namespace HomeWorkMVC1_2.Infrastructure.InMemory
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<EmployeeView> GetAll()
         {
             return _employees;
