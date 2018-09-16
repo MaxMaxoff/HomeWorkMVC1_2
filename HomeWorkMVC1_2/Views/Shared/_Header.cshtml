@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a asp-controller="Home" asp-action="Index"><img src="~/template/images/home/logo.png" alt=""></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="~/images/home/logo.png" alt=""></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -62,11 +62,11 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a asp-controller="Employee" asp-action="Index"><i class="fa fa-user"></i> Employee</a></li>
+                            <li><a href="@Url.Action("Index", "Employee")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Employee" ? "active" : "")"><i class="fa fa-user"></i> Employee</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a asp-controller="Home" asp-action="CheckOut" class="active"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a asp-controller="Home" asp-action="Login"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="@Url.Action("CheckOut", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "CheckOut" ? "active" : "")"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a href="@Url.Action("Cart", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Cart" ? "active" : "")"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="@Url.Action("Login", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Login" ? "active" : "")"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,26 +89,26 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a href="@Url.Action("Index", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">Home</a></li>
                             <li class="dropdown">
-                                <a asp-controller="Home" asp-action="Shop">Shop<i class="fa fa-angle-down"></i></a>
+                                <a href="@Url.Action("Shop", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && (ViewContext.RouteData.Values["action"].ToString() == "Shop" || ViewContext.RouteData.Values["action"].ToString() == "ProductDetails" || ViewContext.RouteData.Values["action"].ToString() == "CheckOut" || ViewContext.RouteData.Values["action"].ToString() == "Cart" || ViewContext.RouteData.Values["action"].ToString() == "Login") ? "active" : "")">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Home" asp-action="Shop">Products</a></li>
-                                    <li><a asp-controller="Home" asp-action="ProductDetails">Product Details</a></li>
-                                    <li><a asp-controller="Home" asp-action="CheckOut" class="active">Checkout</a></li>
-                                    <li><a asp-controller="Home" asp-action="Cart">Cart</a></li>
-                                    <li><a asp-controller="Home" asp-action="Login">Login</a></li>
+                                    <li><a href="@Url.Action("Shop", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Shop" ? "active" : "")">Products</a></li>
+                                    <li><a href="@Url.Action("ProductDetails", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "ProductDetails" ? "active" : "")">Product Details</a></li>
+                                    <li><a href="@Url.Action("CheckOut", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "CheckOut" ? "active" : "")">Checkout</a></li>
+                                    <li><a href="@Url.Action("Cart", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Cart" ? "active" : "")">Cart</a></li>
+                                    <li><a href="@Url.Action("Login", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Login" ? "active" : "")">Login</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a asp-controller="Home" asp-action="Blog">Blog<i class="fa fa-angle-down"></i></a>
+                                <a href="@Url.Action("Blog", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && (ViewContext.RouteData.Values["action"].ToString() == "Blog" || ViewContext.RouteData.Values["action"].ToString() == "BlogSingle") ? "active" : "")">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Home" asp-action="Blog">Blog List</a></li>
-                                    <li><a asp-controller="Home" asp-action="BlogSingle">Blog Single</a></li>
+                                    <li><a href="@Url.Action("Blog", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Blog" ? "active" : "")">Blog List</a></li>
+                                    <li><a href="@Url.Action("BlogSingle", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "BlogSingle" ? "active" : "")">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a asp-controller="Home" asp-action="NotFound">404</a></li>
-                            <li><a asp-controller="Home" asp-action="ContactUs">Contact</a></li>
+                            <li><a href="@Url.Action("NotFound", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "NotFound" ? "active" : "")">404</a></li>
+                            <li><a href="@Url.Action("ContactUs", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "ContactUs" ? "active" : "")">Contact</a></li>
                         </ul>
                     </div>
                 </div>
