@@ -41,10 +41,5 @@ namespace HomeWorkMVC1.Controllers
             };
             return View(model);
         }
-
-        public IActionResult ProductDetails(int id)
-        {
-            return View();
-        }
     }
 }
