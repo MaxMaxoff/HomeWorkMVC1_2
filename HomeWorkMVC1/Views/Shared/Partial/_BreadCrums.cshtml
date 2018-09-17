@@ -1,0 +1,6 @@
+﻿<div class="breadcrumbs">
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action(@ViewContext.RouteData.Values["action"].ToString(), @ViewContext.RouteData.Values["controller"].ToString())">@ViewContext.RouteData.Values["controller"].ToString()</a></li>
+        <li class="active">@ViewContext.RouteData.Values["action"].ToString()</li>
+    </ol>
+</div><!--/breadcrums-->

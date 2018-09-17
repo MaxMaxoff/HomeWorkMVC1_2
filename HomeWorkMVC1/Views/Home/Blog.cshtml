@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@await Html.PartialAsync("Partial/_BreadCrums")
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                @await Html.PartialAsync("Partial/_LeftSideBar")
+            </div>
+            <div class="col-sm-9">
+                @await Html.PartialAsync("Partial/_BlogPostArea")
+            </div>
+        </div>
+    </div>
+</section>

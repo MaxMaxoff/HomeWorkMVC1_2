@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "CheckOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@await Html.PartialAsync("Partial/_BreadCrums")
+
+<section id="cart_items">
+    <div class="container">
+        
+        @await Html.PartialAsync("Partial/_Steps")
+        @await Html.PartialAsync("Partial/_CheckOutOptions")
+
+        @await Html.PartialAsync("Partial/_Register")
+
+        @await Html.PartialAsync("Partial/_ShopperInformation")
+        @await Html.PartialAsync("Partial/_ReviewPayment")
+
+        @await Html.PartialAsync("Partial/_CartInfo")
+        @await Html.PartialAsync("Partial/_PaymentOptions")
+    </div>
+</section>
