@@ -2,6 +2,9 @@
 
 namespace HomeWorkMVC1.Models.Product
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CatalogViewModel
     {
         public int? BrandId { get; set; }
