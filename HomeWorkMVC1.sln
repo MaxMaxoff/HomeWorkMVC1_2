@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeWorkMVC1", "HomeWorkMVC1\HomeWorkMVC1.csproj", "{05449827-F00B-4CDD-9D65-D9DC1CE8A1ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWorkMVC1.Domain", "HomeWorkMVC1.Domain\HomeWorkMVC1.Domain.csproj", "{3120BEEC-C90B-4C2F-A2F7-AF6F25F8944A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeWorkMVC1.Domain", "HomeWorkMVC1.Domain\HomeWorkMVC1.Domain.csproj", "{3120BEEC-C90B-4C2F-A2F7-AF6F25F8944A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWorkMVC1.DAL", "HomeWorkMVC1.DAL\HomeWorkMVC1.DAL.csproj", "{5A334C54-40D5-4927-B4B7-C28303594A9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3120BEEC-C90B-4C2F-A2F7-AF6F25F8944A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3120BEEC-C90B-4C2F-A2F7-AF6F25F8944A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3120BEEC-C90B-4C2F-A2F7-AF6F25F8944A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A334C54-40D5-4927-B4B7-C28303594A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A334C54-40D5-4927-B4B7-C28303594A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A334C54-40D5-4927-B4B7-C28303594A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A334C54-40D5-4927-B4B7-C28303594A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

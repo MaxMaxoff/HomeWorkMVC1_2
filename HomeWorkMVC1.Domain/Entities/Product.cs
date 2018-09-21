@@ -1,4 +1,5 @@
-﻿using HomeWorkMVC1.Domain.Models.Base;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using HomeWorkMVC1.Domain.Models.Base;
 
 namespace HomeWorkMVC1.Domain.Entities
 {
@@ -15,10 +16,16 @@ namespace HomeWorkMVC1.Domain.Entities
         /// </summary>
         public int SectionId { get; set; }
 
+        [ForeignKey("SectionId")]
+        public virtual Section Section { get; set; }
+
         /// <summary>
         /// Brand
         /// </summary>
         public int? BrandId { get; set; }
+
+        [ForeignKey("BrandId")]
+        public virtual Brand Brand { get; set; }
 
         /// <summary>
         /// Image ref

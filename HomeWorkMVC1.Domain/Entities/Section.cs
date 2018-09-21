@@ -1,4 +1,7 @@
-﻿using HomeWorkMVC1.Domain.Models.Base;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using HomeWorkMVC1.Domain.Models.Base;
 
 namespace HomeWorkMVC1.Domain.Entities
 {
@@ -12,6 +15,12 @@ namespace HomeWorkMVC1.Domain.Entities
         /// Parent Section if exist
         /// </summary>
         public int? ParentId { get; set; }
+
+        [ForeignKey("ParentId")]
+        public virtual Section ParentSection { get; set; }
+
         public int Order { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

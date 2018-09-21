@@ -1,4 +1,6 @@
-﻿using HomeWorkMVC1.Domain.Models.Base;
+﻿using System.Collections;
+using System.Collections.Generic;
+using HomeWorkMVC1.Domain.Models.Base;
 
 namespace HomeWorkMVC1.Domain.Entities
 {
@@ -9,6 +11,8 @@ namespace HomeWorkMVC1.Domain.Entities
     public class Brand : NamedEntity, IOrderedEntity
     {
         public int Order { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 
 }

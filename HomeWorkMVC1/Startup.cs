@@ -1,8 +1,11 @@
-﻿using HomeWorkMVC1.Entities.Base.Interfaces;
+﻿using HomeWorkMVC1.DAL.Context;
+using HomeWorkMVC1.Entities.Base.Interfaces;
 using HomeWorkMVC1.Infrastructure.InMemory;
 using HomeWorkMVC1.Infrastructure.Interfaces;
+using HomeWorkMVC1.Infrastructure.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,11 +34,19 @@ namespace HomeWorkMVC1
             //Добавляем сервисы, необходимые для mvc
             services.AddMvc();
 
+            services.AddDbContext<HomeWorkMVC1Context>(options => options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection")));
+
+
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
 
             //Добавляем разрешение зависимости
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
-            services.AddSingleton<IProductData, InMemoryProductData>();
+
+            // removed due to migration to SQL
+            //services.AddSingleton<IProductData, InMemoryProductData>();
+
+            services.AddTransient<IProductData, SqlProductData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
