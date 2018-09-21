@@ -26,6 +26,7 @@ namespace HomeWorkMVC1.Controllers
                 SectionId =
             sectionId
             });
+
             var model = new CatalogViewModel()
             {
                 BrandId = brandId,
@@ -39,12 +40,8 @@ namespace HomeWorkMVC1.Controllers
                     Price = p.Price
                 }).OrderBy(p => p.Order).ToList()
             };
-            return View(model);
-        }
 
-        public IActionResult ProductDetails(int id)
-        {
-            return View();
+            return View(model);
         }
     }
 }

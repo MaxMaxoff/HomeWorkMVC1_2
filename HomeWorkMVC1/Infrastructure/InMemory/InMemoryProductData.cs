@@ -55,7 +55,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Section ()
                 {
                     Id = 6,
-                    Name = "ASICS!!!",
+                    Name = "ASICS",
                     Order = 4,
                     ParentId = 1
                 },
@@ -278,7 +278,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 1,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 1",
                     Price = 1025,
                     ImageUrl = "product1.jpg",
                     Order = 0,
@@ -288,7 +288,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 2,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 2",
                     Price = 1025,
                     ImageUrl = "product2.jpg",
                     Order = 1,
@@ -298,7 +298,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 3,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 3",
                     Price = 1025,
                     ImageUrl = "product3.jpg",
                     Order = 2,
@@ -308,7 +308,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 4,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 4",
                     Price = 1025,
                     ImageUrl = "product4.jpg",
                     Order = 3,
@@ -318,7 +318,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 5,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 5",
                     Price = 1025,
                     ImageUrl = "product5.jpg",
                     Order = 4,
@@ -328,7 +328,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 6,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 6",
                     Price = 1025,
                     ImageUrl = "product6.jpg",
                     Order = 5,
@@ -338,7 +338,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 7,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 7",
                     Price = 1025,
                     ImageUrl = "product7.jpg",
                     Order = 6,
@@ -348,7 +348,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 8,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 8",
                     Price = 1025,
                     ImageUrl = "product8.jpg",
                     Order = 7,
@@ -358,7 +358,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 9,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 9",
                     Price = 1025,
                     ImageUrl = "product9.jpg",
                     Order = 8,
@@ -368,7 +368,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 10,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 10",
                     Price = 1025,
                     ImageUrl = "product10.jpg",
                     Order = 9,
@@ -378,7 +378,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 11,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 11",
                     Price = 1025,
                     ImageUrl = "product11.jpg",
                     Order = 10,
@@ -388,7 +388,7 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 new Product ()
                 {
                     Id = 12,
-                    Name = "Easy Polo Black Edition",
+                    Name = "Easy Polo Black Edition 12",
                     Price = 1025,
                     ImageUrl = "product12.jpg",
                     Order = 11,
@@ -397,18 +397,15 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
                 },
             };
         }
+
         public IEnumerable<Section> GetSections()
         {
             return _sections;
         }
+
         public IEnumerable<Brand> GetBrands()
         {
             return _brands;
-        }
-
-        IEnumerable<Section> IProductData.GetSections()
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<Product> GetProducts(ProductFilter filter)
@@ -417,11 +414,8 @@ namespace HomeWorkMVC1.Infrastructure.InMemory
             if (filter.SectionId.HasValue)
                 products = products.Where(p => p.SectionId.Equals(filter.SectionId)).ToList();
             if (filter.BrandId.HasValue)
-                products = products.Where(p => p.BrandId.HasValue &&
-                                               p.BrandId.Value.Equals(filter.BrandId.Value)).ToList();
+                products = products.Where(p => p.BrandId.HasValue && p.BrandId.Value.Equals(filter.BrandId.Value)).ToList();
             return products;
         }
-
-
     }
 }
