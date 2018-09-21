@@ -23,8 +23,7 @@ namespace HomeWorkMVC1.Controllers
             var products = _productData.GetProducts(new ProductFilter
             {
                 BrandId = brandId,
-                SectionId =
-            sectionId
+                SectionId = sectionId
             });
 
             var model = new CatalogViewModel()

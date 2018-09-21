@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HomeWorkMVC1.DAL\HomeWorkMVC1.DAL.csproj" />
     <ProjectReference Include="..\HomeWorkMVC1.Domain\HomeWorkMVC1.Domain.csproj" />
   </ItemGroup>
 
