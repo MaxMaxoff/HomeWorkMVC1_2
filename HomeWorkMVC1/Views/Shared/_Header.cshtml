@@ -59,16 +59,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-5">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="@Url.Action("Index", "Employee")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Employee" ? "active" : "")"><i class="fa fa-user"></i> Employee</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="@Url.Action("CheckOut", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "CheckOut" ? "active" : "")"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="@Url.Action("Cart", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Cart" ? "active" : "")"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="@Url.Action("Login", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Login" ? "active" : "")"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
+                </div>
+                <div class="col-sm-3">
+                    @await Component.InvokeAsync("LoginLogout")
                 </div>
             </div>
         </div>
@@ -97,7 +99,7 @@
                                     <li><a href="@Url.Action("ProductDetails", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "ProductDetails" ? "active" : "")">Product Details</a></li>
                                     <li><a href="@Url.Action("CheckOut", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "CheckOut" ? "active" : "")">Checkout</a></li>
                                     <li><a href="@Url.Action("Cart", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Cart" ? "active" : "")">Cart</a></li>
-                                    <li><a href="@Url.Action("Login", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Login" ? "active" : "")">Login</a></li>
+                                    <li><a href="@Url.Action("Login", "Account")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Account" && ViewContext.RouteData.Values["action"].ToString() == "Login" ? "active" : "")">Login</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
