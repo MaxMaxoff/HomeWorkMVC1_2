@@ -60,19 +60,18 @@ namespace HomeWorkMVC1.Controllers
         public async Task<IActionResult> Register(RegisterUserViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
-            var user = new User {UserName = model.UserName, Email = model.Email}; //создаем сущность пользователь
-            var createResult = await _userManager.CreateAsync(user, model.Password); //используем менеджер для создания
+            var user = new User { UserName = model.UserName, Email = model.Email }; //создаем сущность пользователь
+            var createResult = await _userManager.CreateAsync(user, model.Password); // используем менеджер для создания
             if (createResult.Succeeded)
             {
-                await _signInManager.SignInAsync(user, false); //если успешно - производим логин
+                await _signInManager.SignInAsync(user, false); // если успешно - производим логин
+                await _userManager.AddToRoleAsync(user, "User");// добавляем роль пользователю
                 return RedirectToAction("Index", "Home");
             }
-
-            foreach (var identityError in createResult.Errors) //выводим ошибки
+            foreach (var identityError in createResult.Errors) // выводим ошибки
             {
                 ModelState.AddModelError("", identityError.Description);
             }
-
             return View(model);
         }
 
