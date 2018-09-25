@@ -1,10 +1,15 @@
 ﻿using HomeWorkMVC1.DAL.Context;
 using HomeWorkMVC1.Data;
+using HomeWorkMVC1.Domain.Entities;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
+using System.Threading;
 
 namespace HomeWorkMVC1
 {
@@ -21,6 +26,40 @@ namespace HomeWorkMVC1
                 {
                     var context = services.GetRequiredService<HomeWorkMVC1Context>();
                     DbInitializer.Initialize(context);
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore,
+                        new IRoleValidator<IdentityRole>[] { },
+                        new UpperInvariantLookupNormalizer(),
+                        new IdentityErrorDescriber(), null);
+                    if (!roleManager.RoleExistsAsync("User").Result)
+                    {
+                        var role = new IdentityRole("User");
+                        var result = roleManager.CreateAsync(role).Result;
+                    }
+
+                    if (!roleManager.RoleExistsAsync("Administrator").Result)
+                    {
+                        var role = new IdentityRole("Administrator");
+                        var result = roleManager.CreateAsync(role).Result;
+                    }
+
+                    var userStore = new UserStore<User>(context);
+                    var userManager = new UserManager<User>(userStore, new
+                            OptionsManager<IdentityOptions>(new OptionsFactory<IdentityOptions>(new
+                                    IConfigureOptions<IdentityOptions>[] { },
+                                new IPostConfigureOptions<IdentityOptions>[] { })),
+                        new PasswordHasher<User>(), new IUserValidator<User>[] { }, new
+                            IPasswordValidator<User>[] { },
+                        new UpperInvariantLookupNormalizer(), new IdentityErrorDescriber(), null, null);
+                    if (userStore.FindByEmailAsync("admin@mail.com", CancellationToken.None).Result == null)
+                    {
+                        var user = new User() {UserName = "Admin", Email = "admin@mail.com"};
+                        var result = userManager.CreateAsync(user, "admin").Result;
+                        if (result == IdentityResult.Success)
+                        {
+                            var roleResult = userManager.AddToRoleAsync(user, "Administrator").Result;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {

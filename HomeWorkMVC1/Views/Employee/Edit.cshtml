@@ -1,8 +1,9 @@
 ﻿@model EmployeeView
 @{
     ViewData["Title"] = "Редактирование сотрудника";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@await Html.PartialAsync("Partial/_BreadCrums")
 
 <h2>@ViewData["Title"]</h2>
 <h4>Сотрудник</h4>

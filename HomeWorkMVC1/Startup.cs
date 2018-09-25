@@ -1,10 +1,13 @@
-﻿using HomeWorkMVC1.DAL.Context;
+﻿using System;
+using HomeWorkMVC1.DAL.Context;
+using HomeWorkMVC1.Domain.Entities;
 using HomeWorkMVC1.Entities.Base.Interfaces;
 using HomeWorkMVC1.Infrastructure.InMemory;
 using HomeWorkMVC1.Infrastructure.Interfaces;
 using HomeWorkMVC1.Infrastructure.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,12 +17,12 @@ namespace HomeWorkMVC1
     public class Startup
     {
         /// <summary>
-        /// Добавляем свойство для доступа к конфигурации
+        /// Property Configuration
         /// </summary>
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// Добавляем новый конструктор, принимающий интерфейс IConfiguration
+        /// Default Ctor
         /// </summary>
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
@@ -31,22 +34,54 @@ namespace HomeWorkMVC1
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //Добавляем сервисы, необходимые для mvc
+            // Add MVC services
             services.AddMvc();
 
+            // Add user data/dependences
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+
+            // Add product data and connection to DB
+            services.AddScoped<IProductData, SqlProductData>();
             services.AddDbContext<HomeWorkMVC1Context>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
+            // Add identity services
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<HomeWorkMVC1Context>()
+                .AddDefaultTokenProviders();
 
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+            // default configuration options for identity
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequiredLength = 6;
 
-            //Добавляем разрешение зависимости
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
 
-            // removed due to migration to SQL
-            //services.AddSingleton<IProductData, InMemoryProductData>();
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
 
-            services.AddTransient<IProductData, SqlProductData>();
+            // default configuration options for Cookie
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Expiration = TimeSpan.FromDays(150);
+
+                // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+                options.LoginPath = "/Account/Login";
+
+                // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+                options.LogoutPath = "/Account/Logout";
+
+                // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,19 +92,21 @@ namespace HomeWorkMVC1
                 app.UseDeveloperExceptionPage();
             }
 
-            //Добавляем расширение для использования статических файлов, т.к. appsettings.json - это статический файл
+            // Add using static files, in case of appsettings.json is static
             app.UseStaticFiles();
 
-            //Добавляем обработку запросов в mvc-формате
+            // Add using Welcome page
+            app.UseWelcomePage("/welcome");
+
+            // Add using authentication
+            app.UseAuthentication();
+
+            // Add MVC routes
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                //routes.MapRoute(
-                //    name: "Employee",
-                //    template: "{controller=Employee}/{action=Index}/{id?}");
             });
         }
     }
