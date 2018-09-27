@@ -35,7 +35,7 @@ namespace HomeWorkMVC1.Infrastructure.Sql
 
             if (filter.Ids != null && filter.Ids.Count > 0)
             {
-                query = query.Where(c => c.Id.Equals(filter.Ids));
+                query = query.Where(c => filter.Ids.Contains(c.Id));
             }
 
             if (filter.BrandId.HasValue)
