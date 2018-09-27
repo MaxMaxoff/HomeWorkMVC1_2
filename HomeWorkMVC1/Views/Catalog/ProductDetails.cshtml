@@ -1,18 +1,16 @@
-﻿@model HomeWorkMVC1.Models.Product.CatalogViewModel
+﻿@model HomeWorkMVC1.Models.Product.ProductViewModel
 @{
-    ViewBag.Title = "Home";
+    ViewData["Title"] = "Товар:" + Model.Name;
 }
 
-@await Html.PartialAsync("Partial/_Slider")
-
+@await Html.PartialAsync("Partial/_BreadCrums")
 <section>
     <div class="row">
         <div class="col-sm-3">
             @await Html.PartialAsync("Partial/_LeftSideBar")
         </div>
         <div class="col-sm-9 padding-right">
-            @*@await Html.PartialAsync("Partial/_Features")*@
-            @await Html.PartialAsync("Partial/_ProductItems", Model.Products)
+            @await Html.PartialAsync("Partial/_ProductDetails")
             @await Html.PartialAsync("Partial/_CategoryTab")
             @await Html.PartialAsync("Partial/_Recommended")
         </div>

@@ -1,4 +1,5 @@
-﻿using HomeWorkMVC1.Infrastructure.Interfaces;
+﻿using HomeWorkMVC1.Domain.Model;
+using HomeWorkMVC1.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using HomeWorkMVC1.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -52,7 +53,7 @@ namespace HomeWorkMVC1.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("edit/{id?}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult Edit(int? id)
         {
             EmployeeView model;
@@ -71,7 +72,7 @@ namespace HomeWorkMVC1.Controllers
 
         [HttpPost]
         [Route("edit/{id?}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult Edit(EmployeeView model)
         {
             if (model.Age < 18 && model.Age > 75)
@@ -111,7 +112,7 @@ namespace HomeWorkMVC1.Controllers
         /// <param name="id">Id сотрудника</param>
         /// <returns></returns>
         [Route("delete/{id}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult Delete(int id)
         {
             _employeesData.Delete(id);

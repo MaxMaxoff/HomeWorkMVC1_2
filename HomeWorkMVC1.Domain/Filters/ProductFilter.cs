@@ -18,5 +18,7 @@ namespace HomeWorkMVC1.Domain.Filters
         /// Barnd if exist
         /// </summary>
         public int? BrandId { get; set; }
+
+        public List<int> Ids { get; set; }
     }
 }

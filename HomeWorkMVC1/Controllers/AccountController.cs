@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using HomeWorkMVC1.Domain.Entities;
+using HomeWorkMVC1.Domain.Model;
 using HomeWorkMVC1.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -65,7 +66,7 @@ namespace HomeWorkMVC1.Controllers
             if (createResult.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false); // если успешно - производим логин
-                await _userManager.AddToRoleAsync(user, "User");// добавляем роль пользователю
+                await _userManager.AddToRoleAsync(user, Constants.Roles.User);// добавляем роль пользователю
                 return RedirectToAction("Index", "Home");
             }
             foreach (var identityError in createResult.Errors) // выводим ошибки
