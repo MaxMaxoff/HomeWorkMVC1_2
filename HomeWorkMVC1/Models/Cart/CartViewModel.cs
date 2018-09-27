@@ -15,6 +15,6 @@ namespace HomeWorkMVC1.Models.Cart
                 return Items?.Sum(x => x.Value) ?? 0;
             }
         }
-
     }
+
 }
