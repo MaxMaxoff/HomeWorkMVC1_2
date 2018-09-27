@@ -1,0 +1,10 @@
+﻿@model HomeWorkMVC1.Models.Cart.CartViewModel
+@{
+    ViewData["Title"] = "Корзина";
+}
+<section id="cart_items">
+    @await Html.PartialAsync("Partial/_BreadCrums")
+    @await Html.PartialAsync("Partial/_CartInfo")
+</section> <!--/#cart_items-->
+
+@await Html.PartialAsync("Partial/_DoActions")<!--/#do_action-->

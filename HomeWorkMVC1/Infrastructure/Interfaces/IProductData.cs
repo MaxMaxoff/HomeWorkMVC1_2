@@ -24,8 +24,15 @@ namespace HomeWorkMVC1.Entities.Base.Interfaces
         /// <summary>
         /// Product list
         /// </summary>
-        /// <param name="filter">Фильтр товаров</param>
+        /// <param name="filter">Product filter</param>
         /// <returns></returns>
         IEnumerable<Product> GetProducts(ProductFilter filter);
+
+        /// <summary>
+        /// Product by ID
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>Сущность Product, если нашёл, иначе null</returns>
+        Product GetProductById(int id);
     }
 }

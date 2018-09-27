@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using HomeWorkMVC1.Domain.Filters;
 using HomeWorkMVC1.Entities.Base.Interfaces;
 using HomeWorkMVC1.Models.Product;
@@ -20,12 +17,8 @@ namespace HomeWorkMVC1.Controllers
 
         public IActionResult Shop(int? sectionId, int? brandId)
         {
-            var products = _productData.GetProducts(new ProductFilter
-            {
-                BrandId = brandId,
-                SectionId = sectionId
-            });
-
+            var products = _productData.GetProducts(new ProductFilter { BrandId = brandId, SectionId =
+                sectionId });
             var model = new CatalogViewModel()
             {
                 BrandId = brandId,
@@ -36,11 +29,28 @@ namespace HomeWorkMVC1.Controllers
                     ImageUrl = p.ImageUrl,
                     Name = p.Name,
                     Order = p.Order,
-                    Price = p.Price
+                    Price = p.Price,
+                    Brand = p.Brand != null ? p.Brand.Name : string.Empty
                 }).OrderBy(p => p.Order).ToList()
             };
-
             return View(model);
         }
+
+        public IActionResult ProductDetails(int id)
+        {
+            var product = _productData.GetProductById(id);
+            if (product == null)
+                return NotFound();
+            return View(new ProductViewModel
+            {
+                Id = product.Id,
+                ImageUrl = product.ImageUrl,
+                Name = product.Name,
+                Order = product.Order,
+                Price = product.Price,
+                Brand = product.Brand != null ? product.Brand.Name : string.Empty
+            });
+        }
+
     }
 }

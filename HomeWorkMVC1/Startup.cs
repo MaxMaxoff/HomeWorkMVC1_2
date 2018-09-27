@@ -2,11 +2,13 @@
 using HomeWorkMVC1.DAL.Context;
 using HomeWorkMVC1.Domain.Entities;
 using HomeWorkMVC1.Entities.Base.Interfaces;
+using HomeWorkMVC1.Infrastructure.Implementations;
 using HomeWorkMVC1.Infrastructure.InMemory;
 using HomeWorkMVC1.Infrastructure.Interfaces;
 using HomeWorkMVC1.Infrastructure.Sql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -82,6 +84,10 @@ namespace HomeWorkMVC1
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
+
+            //Настройки для корзины
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ICartService, CookieCartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

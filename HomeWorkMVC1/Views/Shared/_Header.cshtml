@@ -68,7 +68,7 @@
                             }
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="@Url.Action("CheckOut", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "CheckOut" ? "active" : "")"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="@Url.Action("Cart", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Cart" ? "active" : "")"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="@Url.Action("Details", "Cart")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Cart" && ViewContext.RouteData.Values["action"].ToString() == "Details" ? "active" : "")"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                         </ul>
                     </div>
                 </div>
@@ -99,9 +99,9 @@
                                 <a href="@Url.Action("Shop", "Catalog")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Catalog" && (ViewContext.RouteData.Values["action"].ToString() == "Shop" || ViewContext.RouteData.Values["action"].ToString() == "ProductDetails" || ViewContext.RouteData.Values["action"].ToString() == "CheckOut" || ViewContext.RouteData.Values["action"].ToString() == "Cart" || ViewContext.RouteData.Values["action"].ToString() == "Login") ? "active" : "")">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="@Url.Action("Shop", "Catalog")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Catalog" && ViewContext.RouteData.Values["action"].ToString() == "Shop" ? "active" : "")">Products</a></li>
-                                    <li><a href="@Url.Action("ProductDetails", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "ProductDetails" ? "active" : "")">Product Details</a></li>
-                                    <li><a href="@Url.Action("CheckOut", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "CheckOut" ? "active" : "")">Checkout</a></li>
-                                    <li><a href="@Url.Action("Cart", "Home")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "Cart" ? "active" : "")">Cart</a></li>
+                                    @*<li><a href="@Url.Action("ProductDetails", "Catalog")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Catalog" && ViewContext.RouteData.Values["action"].ToString() == "ProductDetails" ? "active" : "")">Product Details</a></li>*@
+                                    @*<li><a href="@Url.Action("CheckOut", "Cart")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Cart" && ViewContext.RouteData.Values["action"].ToString() == "CheckOut" ? "active" : "")">Checkout</a></li>*@
+                                    <li><a href="@Url.Action("Details", "Cart")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Cart" && ViewContext.RouteData.Values["action"].ToString() == "Details" ? "active" : "")">Cart</a></li>
                                     <li><a href="@Url.Action("Login", "Account")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Account" && ViewContext.RouteData.Values["action"].ToString() == "Login" ? "active" : "")">Login</a></li>
                                 </ul>
                             </li>
