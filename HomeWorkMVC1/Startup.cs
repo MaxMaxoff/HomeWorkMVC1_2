@@ -3,6 +3,7 @@ using HomeWorkMVC1.DAL.Context;
 using HomeWorkMVC1.Domain.Entities;
 using HomeWorkMVC1.Entities.Base.Interfaces;
 using HomeWorkMVC1.Infrastructure.Implementations;
+using HomeWorkMVC1.Infrastructure.Implementations.Sql;
 using HomeWorkMVC1.Infrastructure.InMemory;
 using HomeWorkMVC1.Infrastructure.Interfaces;
 using HomeWorkMVC1.Infrastructure.Sql;
@@ -43,7 +44,9 @@ namespace HomeWorkMVC1
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
 
             // Add product data and connection to DB
-            services.AddScoped<IProductData, SqlProductData>();
+            services.AddTransient<IProductData, SqlProductData>();
+            services.AddTransient<IOrdersService, SqlOrdersService>();
+
             services.AddDbContext<HomeWorkMVC1Context>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
 
@@ -87,7 +90,7 @@ namespace HomeWorkMVC1
 
             //Настройки для корзины
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ICartService, CookieCartService>();
+            services.AddTransient<ICartService, CookieCartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -110,6 +113,10 @@ namespace HomeWorkMVC1
             // Add MVC routes
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name : "areas",
+                    template : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
