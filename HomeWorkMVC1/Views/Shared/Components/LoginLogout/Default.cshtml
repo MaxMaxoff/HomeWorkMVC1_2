@@ -1,6 +1,7 @@
 ﻿@if (User.Identity.IsAuthenticated)
 {
-    <span>Здравствуйте, @User.Identity.Name</span>
+    <span>Здравствуйте, <a asp-action="Index"
+                           asp-controller="Profile">@User.Identity.Name</a></span>
     <form method="post" asp-controller="Account" asp-action="Logout" asp-antiforgery="true">
         <input type="submit" value="Выход" class="btn btn-default"/>
     </form>
@@ -12,4 +13,3 @@ else
         <a asp-action="Register" asp-controller="Account" class="btn btn-default">Регистрация</a>
     </div>
 }
-

@@ -11,9 +11,10 @@ using System;
 namespace HomeWorkMVC1.DAL.Migrations
 {
     [DbContext(typeof(HomeWorkMVC1Context))]
-    partial class HomeWorkMVC1ContextModelSnapshot : ModelSnapshot
+    [Migration("20181001102701_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
